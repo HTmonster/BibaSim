@@ -1,6 +1,12 @@
+/*
+ * @Author: Theo_hui
+ * @Date: 2020-10-20 19:46:43
+ * @Descripttion: 
+ */
 import Vue from 'vue'
 import Router from 'vue-router'
 import login from '@/components/login'
+import home from '@/components/home'
 
 Vue.use(Router)
 
@@ -14,6 +20,11 @@ const router = new Router({
       path: '/login',
       name: 'login',
       component: login
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: home
     },
     // {
     //   path: '/home',

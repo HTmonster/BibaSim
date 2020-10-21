@@ -38,20 +38,7 @@ module.exports = {
     // https://vue-loader.vuejs.org/en/options.html#cachebusting
     cacheBusting: true,
 
-    cssSourceMap: true,
-
-    proxy: {
-      '/api': {
-          // 此处的写法，目的是为了 将 /api 替换成 https://www.baidu.com/
-          target: 'http://127.0.0.1:5000/api',
-          // 允许跨域
-          changeOrigin: true,
-          ws: true,
-          pathRewrite: {
-              '^/api': ''
-          }
-      }
-  }
+    cssSourceMap: true
   },
 
   build: {
@@ -61,7 +48,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
 
     /**
      * Source Maps

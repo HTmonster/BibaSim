@@ -17,9 +17,13 @@ const store = new Vuex.Store({
   mutations: {
     // 修改token，并将token存入localStorage
     changeLogin (state, user) {
-      console.log("xxxx")
       state.Authorization = user.Authorization;
       localStorage.setItem('Authorization', user.Authorization);
+      localStorage.setItem('username', user.username);
+    },
+    // 清空token
+    logout() {
+      localStorage.removeItem('Authorization')
     }
   }
 });

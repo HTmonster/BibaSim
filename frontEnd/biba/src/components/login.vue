@@ -5,6 +5,7 @@
 -->
 <template>
   <el-main>
+    <span class="title">Biba</span>
     <el-card class="box-card">
       <h>登录</h>
       <el-input class="elinput" v-model="loginForm.username" placeholder="用户名"></el-input>
@@ -14,8 +15,14 @@
   </el-main>
 </template>
 <style scoped>
+  .title{
+    display: block;
+    font-family: "Impact";
+    margin-top: 150px;
+    font-size: 80px;
+  }
   .box-card{
-    margin: 200px auto;
+    margin: 30px auto;
     width: 400px;
   }
   .elinput{
@@ -56,9 +63,12 @@ export default {
           _this.userToken =res.data.token;
           console.log(_this.userToken);
           // 将用户token保存到vuex中
-          _this.changeLogin({ Authorization: _this.userToken });
-          // _this.$router.push('/home');
-          alert('登陆成功');
+          _this.changeLogin({ Authorization: _this.userToken,username:this.loginForm.username });
+          _this.$router.push('/home');
+          this.$message({
+            message: '登录成功',
+            type: 'success'
+          });
         }).catch(error => {
           console.log(error)
           alert('账号或密码错误');
