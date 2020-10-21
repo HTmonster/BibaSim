@@ -86,12 +86,21 @@ def get_objects():
 
     return jsonify({"status":"OK","data":data})
 
-@blue.route('/api/objects<int:id>',methods=['GET'])
+@blue.route('/api/objects/<int:id>',methods=['GET','POST'])
 @auth.login_required
 def get_object_content(id):
     ''' 获得一个对象的具体内容 '''
     o=Object.query.filter_by(id=id).first()
     if not o:
         return jsonify({"status":"ERROR","msg":"invalid id"})
-
-    return jsonify({"status":"OK","data":o})
+    
+    if request.method=="GET":
+        return jsonify({"status":"OK","data":o.content})
+    elif request.method=="POST":
+        try:
+            data    = request.json.get('data')
+            o.content+=data
+            db.session.commit()
+            return jsonify({"status":"OK"})
+        except:
+            return jsonify({"status":"ERROR"})

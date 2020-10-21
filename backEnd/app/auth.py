@@ -18,6 +18,7 @@ def verify_password(username_or_token, password):
     '''    
     username_or_token.encode("ascii")
     #先尝试Token 认证
+    print("dddd",username_or_token)
     print(User.verify_auth_token(username_or_token))
     user = User.verify_auth_token(username_or_token)
     if not user:
